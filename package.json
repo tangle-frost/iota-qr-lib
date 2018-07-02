@@ -1,0 +1,65 @@
+{
+    "name": "@tangle-frost/iota-qr-lib",
+    "version": "0.0.1",
+    "description": "Tangle Frost QR Code All in One Library",
+    "main": "pkg/iota-qr-lib.js",
+    "typings": "pkg/iota-qr-lib.d.ts",
+    "module": "dist/index-all.js",
+    "keywords": [
+        "iota",
+        "interface",
+        "tangle",
+        "javascript",
+        "typescript",
+        "API"
+    ],
+    "directories": {
+        "doc": "docs",
+        "test": "test"
+    },
+    "author": "Martyn Janes <martyn@iota.eco>",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tangle-frost/iota-qr-lib.git"
+    },
+    "engines": {
+        "node": ">=8"
+    },
+    "scripts": {
+        "build-clean": "rimraf ./dist/*",
+        "build-compile": "tsc",
+        "build": "npm-run-all build-clean build-compile",
+        "pkg-clean": "rimraf ./pkg/*",
+        "pkg-dev-all": "cross-env NODE_ENV=development LIB_VER=all webpack --progress",
+        "pkg-prod-all": "cross-env NODE_ENV=production LIB_VER=all webpack --progress",
+        "pkg-dts": "node ./dist/build-dts.js",
+        "pkg-finalise": "rimraf ./pkg/bootstrap.js",
+        "pkg": "npm-run-all pkg-clean pkg-dev-all pkg-prod-all pkg-dts pkg-finalise",
+        "security": "nsp check",
+        "dist": "npm-run-all build pkg"
+    },
+    "dependencies": {
+    },
+    "devDependencies": {
+        "@babel/core": "^7.0.0-beta.40",
+        "@babel/plugin-transform-runtime": "^7.0.0-beta.40",
+        "@babel/preset-env": "^7.0.0-beta.40",
+        "@babel/runtime": "^7.0.0-beta.40",
+        "@tangle-frost/iota-core": "^0.0.1",
+        "@tangle-frost/iota-qr-core": "^0.0.1",
+        "@tangle-frost/iota-qr-render": "^0.0.1",
+        "@tangle-frost/iota-qr-data": "^0.0.1",
+        "@types/node": "^10.3.4",
+        "babel-loader": "^8.0.0-beta.0",
+        "babel-plugin-transform-builtin-extend": "^1.1.2",
+        "cross-env": "^5.2.0",
+        "npm-run-all": "^4.1.3",
+        "nsp": "^3.2.1",
+        "rimraf": "^2.6.2",
+        "typescript": "^2.9.2",
+        "uglifyjs-webpack-plugin": "^1.2.5",
+        "webpack": "^4.8.3",
+        "webpack-cli": "^3.0.8"
+    }
+}

@@ -1,0 +1,33 @@
+language: node_js
+node_js:
+  - 10
+install:
+  - cd ../../
+  - git clone --branch=$TRAVIS_BRANCH https://github.com/tangle-frost/iota-core.git tangle-frost/iota-core
+  - cd tangle-frost/iota-core
+  - npm link
+  - cd ../../
+  - git clone --branch=$TRAVIS_BRANCH https://github.com/tangle-frost/iota-qr-core.git tangle-frost/iota-qr-core
+  - cd tangle-frost/iota-qr-core
+  - npm link @tangle-frost/iota-core
+  - npm link
+  - cd ../../
+  - git clone --branch=$TRAVIS_BRANCH https://github.com/tangle-frost/iota-qr-render.git tangle-frost/iota-qr-render
+  - cd tangle-frost/iota-qr-render
+  - npm link @tangle-frost/iota-core @tangle-frost/iota-qr-core
+  - npm link
+  - cd ../../
+  - git clone --branch=$TRAVIS_BRANCH https://github.com/tangle-frost/iota-qr-data.git tangle-frost/iota-qr-data
+  - cd tangle-frost/iota-qr-data
+  - npm link @tangle-frost/iota-core @tangle-frost/iota-qr-core @tangle-frost/iota-qr-render
+  - npm link
+  - cd ../iota-qr-lib
+  - npm link @tangle-frost/iota-core @tangle-frost/iota-qr-core @tangle-frost/iota-qr-render @tangle-frost/iota-qr-data
+  - npm install
+script:
+  - npm run dist || travis_terminate 1
+  - npm run security || travis_terminate 1
+  - npm run test-publish || travis_terminate 1
+cache:
+  directories:
+    - "node_modules"
