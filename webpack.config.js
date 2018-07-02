@@ -26,13 +26,13 @@ module.exports = {
     entry: bootstrapFile,
     output: {
         path: pkgFolder,
-        filename: "iota-media-type-lib" + outputLibName + (isProd ? '.min' : '') + '.js',
+        filename: "iota-qr-lib" + outputLibName + (isProd ? '.min' : '') + '.js',
         libraryTarget: 'umd',
         libraryExport: 'default',
         library: {
-            root: "IotaMediaType",
-            amd: "@tangle-frost/iota-media-type-lib",
-            commonjs: "@tangle-frost/iota-media-type-lib"
+            root: "IotaQR",
+            amd: "@tangle-frost/iota-qr-lib",
+            commonjs: "@tangle-frost/iota-qr-lib"
         },
         umdNamedDefine: true,
         globalObject: 'typeof self !== \'undefined\' ? self : this'

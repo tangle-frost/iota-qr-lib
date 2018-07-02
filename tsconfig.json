@@ -15,6 +15,7 @@
         "noUnusedLocals": true,
         "strictNullChecks": false,
         "types": [
+            "@types/node"
         ],
         "esModuleInterop": true,
         "stripInternal": true,

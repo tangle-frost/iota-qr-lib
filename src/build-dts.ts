@@ -51,5 +51,5 @@ buildDts(
     [
     ],
     "./src/index-all.ts",
-    "./pkg/iota-media-type-lib.d.ts"
+    "./pkg/iota-qr-lib.d.ts"
 );
