@@ -110,9 +110,27 @@ export class ObjectHelper {
 }
 
 /**
- * Class to maniuplate Strings.
+ * String helper methods.
  */
 export class StringHelper {
+    /**
+     * Is the value a string.
+     * @param value Object to test for its stringyness.
+     * @returns True if the object is a string.
+     */
+    static isString(value: any): value is string;
+    /**
+     * Is the value a string that is empty.
+     * @param value Object to test for its no emptyness.
+     * @returns True if the object is an empty string.
+     */
+    static isEmpty(value: any): boolean;
+    /**
+     * Is the string all ASCII characters.
+     * @param value string to test if is is ASCII.
+     * @returns True if the object is all ASCII.
+     */
+    static isASCII(value: string): boolean;
     /**
      * Encode non ASCII characters with control characters.
      * @param value The string value to escape.
@@ -125,12 +143,6 @@ export class StringHelper {
      * @returns The decoded version of the string.
      */
     static decodeNonASCII(value: string): string;
-    /**
-     * Check to see if the whole string is ASCII.
-     * @param value The value to check.
-     * @returns True if all the characters are ascii.
-     */
-    static isASCII(value: string): boolean;
 }
 
 /**
@@ -553,12 +565,25 @@ export class QRRendererFactory extends FactoryBase<IQRRenderer> {
 }
 
 /**
- * JPEG Encoder.
- * Baed on JPEG encoder ported to JavaScript and optimized by Andreas Ritter, www.bytestrom.eu, 11/2009
+ * Class to help with manipulating image data.
  */
-export class JPEGEncoder {
+export class ImageHelper {
     /**
-     * Create a new instance of JPEGEncoder.
+     * Convert the data to an image source.
+     * @param mimeType The mime type of the data.
+     * @param data The source data.
+     * @returns The image source.
+     */
+    static dataToImageSource(mimeType: string, data: Uint8Array | string): string;
+}
+
+/**
+ * JPEG Encoder.
+ * Based on JPEG encoder ported to JavaScript and optimized by Andreas Ritter, www.bytestrom.eu, 11/2009
+ */
+export class JpegEncoder {
+    /**
+     * Create a new instance of JpegEncoder.
      */
     constructor();
     /**
@@ -584,7 +609,15 @@ export interface IQRRenderer {
      * @param marginSize The margin size in pixels to leave around the qr code.
      * @returns The rendered object.
      */
-    render(cellData: QRCellData, cellSize?: number, marginSize?: number): any;
+    renderRaw(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<Uint8Array | string>;
+    /**
+     * Render the cell data as an HTML element.
+     * @param cellData The cell data to render.
+     * @param cellSize The size in pixels of each cell.
+     * @param marginSize The margin size in pixels to leave around the qr code.
+     * @returns The object rendered as an html element.
+     */
+    renderHtml(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<HTMLElement>;
 }
 
 /**
@@ -603,7 +636,15 @@ export class JpegRenderer implements IQRRenderer {
      * @param marginSize The margin to keep around the qr code.
      * @returns The bitmap content.
      */
-    render(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<Uint8Array>;
+    renderRaw(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<Uint8Array>;
+    /**
+     * Render the cell data as an HTML element.
+     * @param cellData The cell data to render.
+     * @param cellSize The size in pixels of each cell.
+     * @param marginSize The margin size in pixels to leave around the qr code.
+     * @returns The object rendered as an html element.
+     */
+    renderHtml(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<HTMLImageElement>;
 }
 
 /**
@@ -613,11 +654,15 @@ export class JpegRendererOptions {
     /**
      * The foreground colour.
      */
-    foregroundColour?: number;
+    foreground?: Color;
     /**
      * The background colour.
      */
-    backgroundColour?: number;
+    background?: Color;
+    /**
+     * The style to apply for the html element.
+     */
+    elementStyle?: string;
 }
 
 /**
@@ -636,7 +681,15 @@ export class CanvasRenderer implements IQRRenderer {
      * @param marginSize The margin to keep around the qr code.
      * @returns The SVG content.
      */
-    render(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<HTMLCanvasElement>;
+    renderRaw(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<Uint8Array | string>;
+    /**
+     * Render the cell data as an HTML element.
+     * @param cellData The cell data to render.
+     * @param cellSize The size in pixels of each cell.
+     * @param marginSize The margin size in pixels to leave around the qr code.
+     * @returns The object rendered as an html element.
+     */
+    renderHtml(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<HTMLCanvasElement>;
 }
 
 /**
@@ -646,11 +699,15 @@ export class CanvasRendererOptions {
     /**
      * The foreground colour.
      */
-    foregroundColour?: string;
+    foreground?: Color;
     /**
      * The background colour.
      */
-    backgroundColour?: string;
+    background?: Color;
+    /**
+     * The style to apply for the html element.
+     */
+    elementStyle?: string;
 }
 
 /**
@@ -669,7 +726,15 @@ export class PngRenderer implements IQRRenderer {
      * @param marginSize The margin to keep around the qr code.
      * @returns The bitmap content.
      */
-    render(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<Uint8Array>;
+    renderRaw(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<Uint8Array>;
+    /**
+     * Render the cell data as an HTML element.
+     * @param cellData The cell data to render.
+     * @param cellSize The size in pixels of each cell.
+     * @param marginSize The margin size in pixels to leave around the qr code.
+     * @returns The object rendered as an html element.
+     */
+    renderHtml(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<HTMLImageElement>;
 }
 
 /**
@@ -679,11 +744,15 @@ export class PngRendererOptions {
     /**
      * The foreground colour.
      */
-    foregroundColour?: number;
+    foreground?: Color;
     /**
      * The background colour.
      */
-    backgroundColour?: number;
+    background?: Color;
+    /**
+     * The style to apply for the html element.
+     */
+    elementStyle?: string;
 }
 
 /**
@@ -702,7 +771,15 @@ export class SvgRenderer implements IQRRenderer {
      * @param marginSize The margin to keep around the qr code.
      * @returns The SVG content.
      */
-    render(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<string>;
+    renderRaw(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<string>;
+    /**
+     * Render the cell data as an HTML element.
+     * @param cellData The cell data to render.
+     * @param cellSize The size in pixels of each cell.
+     * @param marginSize The margin size in pixels to leave around the qr code.
+     * @returns The object rendered as an html element.
+     */
+    renderHtml(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<HTMLElement>;
 }
 
 /**
@@ -712,11 +789,15 @@ export class SvgRendererOptions {
     /**
      * The foreground colour.
      */
-    foregroundColour?: string;
+    foreground?: Color;
     /**
      * The background colour.
      */
-    backgroundColour?: string;
+    background?: Color;
+    /**
+     * The style to apply for the html element.
+     */
+    elementStyle?: string;
 }
 
 /**
@@ -735,7 +816,15 @@ export class TextRenderer implements IQRRenderer {
      * @param marginSize The margin to keep around the qr code.
      * @returns The text content.
      */
-    render(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<string>;
+    renderRaw(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<string>;
+    /**
+     * Render the cell data as an HTML element.
+     * @param cellData The cell data to render.
+     * @param cellSize The size in pixels of each cell.
+     * @param marginSize The margin size in pixels to leave around the qr code.
+     * @returns The object rendered as an html element.
+     */
+    renderHtml(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<HTMLElement>;
 }
 
 /**
@@ -750,6 +839,10 @@ export class TextRendererOptions {
      * The character to use for off pixels.
      */
     offChar?: string;
+    /**
+     * The style to apply for the html element.
+     */
+    elementStyle?: string;
 }
 
 /**
