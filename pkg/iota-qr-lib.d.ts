@@ -1,4 +1,74 @@
 /**
+ * Class to represent a color.
+ */
+export class Color {
+    /**
+     * Create a new instance of color.
+     * @param alpha The alpha element of the color.
+     * @param red The red element of the color.
+     * @param green The green element of the color.
+     * @param blue The blue element of the color.
+     */
+    constructor(alpha: number, red: number, green: number, blue: number);
+    /**
+     * Construct a color from a hex string.
+     * @param hex The hex string to parse.
+     * @returns The color.
+     */
+    static fromHex(hex: string): Color;
+    /**
+     * Get the alpha element.
+     * @returns The alpha element.
+     */
+    alpha(): number;
+    /**
+     * Get the red element.
+     * @returns The red element.
+     */
+    red(): number;
+    /**
+     * Get the green element.
+     * @returns The green element.
+     */
+    green(): number;
+    /**
+     * Get the blue element.
+     * @returns The blue element.
+     */
+    blue(): number;
+    /**
+     * Get color as argb.
+     * @returns The color as argb.
+     */
+    argb(): number;
+    /**
+     * Get color as rgba.
+     * @returns The color as rgba.
+     */
+    rgba(): number;
+    /**
+     * Get color as rgb text.
+     * @returns The color as rgb.
+     */
+    rgbText(): string;
+    /**
+     * Get color as rgba text.
+     * @returns The color as rgba.
+     */
+    rgbaText(): string;
+    /**
+     * Get color as hex no alpha.
+     * @returns The color as hex with no alpha component.
+     */
+    hex(): string;
+    /**
+     * Get color as hex with alpha.
+     * @returns The color as hex with with alpha component.
+     */
+    hexWithAlpha(): string;
+}
+
+/**
  * Factory to generate types.
  * @typeparam T The generic type for the object types in the factory.
  */
@@ -185,10 +255,20 @@ export class QR {
      */
     constructor(typeNumber?: number, errorCorrectLevel?: ErrorCorrectLevel);
     /**
-     * Add data to the QR Code.
+     * Add text data to the QR Code.
      * @param qrData The data to add.
      */
-    addData(qrData: QRDataBase | string): void;
+    addText(qrData: string): void;
+    /**
+     * Add number to the QR Code.
+     * @param qrData The data to add.
+     */
+    addNumber(qrData: string): void;
+    /**
+     * Add alpha numeric to the QR Code.
+     * @param qrData The data to add.
+     */
+    addAlphaNumeric(qrData: string): void;
     /**
      * Generate the display buffer.
      * @param cellSize The size of the cell to generate.
@@ -196,234 +276,6 @@ export class QR {
      * @returns Boolean buffer of pixels
      */
     generate(): QRCellData;
-}
-
-/**
- * QR Data for representing a alpha numeric.
- * Based on https://github.com/kazuhikoarase/qrcode-generator/
- */
-export class QRAlphaNumeric extends QRDataBase {
-    /**
-     * Create a new instance of QRAlphaNumeric.
-     * @param data The data for the qr alpha numeric.
-     */
-    constructor(data: string);
-    /**
-     * Get the length of the data.
-     * @returns The length of the data.
-     */
-    getLength(): number;
-    /**
-     * Write data into the buffer.
-     * @param buffer The buffer to write into.
-     */
-    write(buffer: BitBuffer): void;
-}
-
-/**
- * QR Data for representing a 8 bit data.
- * Based on https://github.com/kazuhikoarase/qrcode-generator/
- */
-export class QRByte8 extends QRDataBase {
-    /**
-     * Create a new instance of QRByte8.
-     * @param data The data for the qr 8 bit data.
-     */
-    constructor(data: string);
-    /**
-     * Get the length of the data.
-     * @returns The length of the data.
-     */
-    getLength(): number;
-    /**
-     * Write data into the buffer.
-     * @param buffer The buffer to write into.
-     */
-    write(buffer: BitBuffer): void;
-}
-
-/**
- * QR Data for representing a number.
- * Based on https://github.com/kazuhikoarase/qrcode-generator/
- */
-export class QRNumber extends QRDataBase {
-    /**
-     * Create a new instance of QRNumber.
-     * @param data The data for the qr number.
-     */
-    constructor(data: string);
-    /**
-     * Get the length of the data.
-     * @returns The length of the data.
-     */
-    getLength(): number;
-    /**
-     * Write data into the buffer.
-     * @param buffer The buffer to write into.
-     */
-    write(buffer: BitBuffer): void;
-}
-
-/**
- * Class for maintaining data bits.
- * Based on https://github.com/kazuhikoarase/qrcode-generator/
- */
-export class BitBuffer {
-    private readonly _buffer;
-    private _length;
-    constructor();
-    getBuffer(): number[];
-    getLengthInBits(): number;
-    put(num: number, length: number): void;
-    putBit(bit: boolean): void;
-    toString(): string;
-    private getBit;
-}
-
-/**
- * Class to helper with math.
- * Based on https://github.com/kazuhikoarase/qrcode-generator/
- */
-export class MathHelper {
-    /**
-     * Initialize the math helper.
-     */
-    static initialize(): void;
-    /**
-     * Get the log of the value.
-     * @param value The value to get the log of.
-     * @returns the log of the value.
-     */
-    static glog(value: number): number;
-    /**
-     * Get the exponent of the value.
-     * @param value The value to get the exponent of.
-     * @returns The exponent of the value.
-     */
-    static gexp(value: number): number;
-}
-
-/**
- * Class to represent a polynomial.
- * Based on https://github.com/kazuhikoarase/qrcode-generator/
- */
-export class Polynomial {
-    /**
-     * Create a new instance of Polynomial.
-     * @param num The num of the polynomial.
-     * @param shift The shift for the polynomial.
-     */
-    constructor(num: number[], shift?: number);
-    /**
-     * The the value of the polynomial at given index.
-     * @param index The index.
-     * @returns The value of the polynomial.
-     */
-    getAt(index: number): number;
-    /**
-     * Get the length of the polynomial.
-     * @returns The polynomial.
-     */
-    getLength(): number;
-    /**
-     * Convert the polynomial to a string.
-     * @returns The string representation of the polynomial.
-     */
-    toString(): string;
-    /**
-     * Get the log representation of the polynomial.
-     * @returns The log representation of the polynomial.
-     */
-    toLogString(): string;
-    /**
-     * Multiply the polynomial with another one.
-     * @param e The polynomial to multiply.
-     * @returns The multiplication of the polynomials.
-     */
-    multiply(e: Polynomial): Polynomial;
-    /**
-     * Get the modulus of the polynomial from another.
-     * @param e The polynomial.
-     * @returns The modules of the polynomials.
-     */
-    mod(e: Polynomial): Polynomial;
-}
-
-/**
- * Helper methods for QR generation.
- * Based on https://github.com/kazuhikoarase/qrcode-generator/
- */
-export class QRHelper {
-    /**
-     * Get the pattern position for the given type number.
-     * @param typeNumber The type number to get the pattern for.
-     * @returns The pattern for the type number.
-     */
-    static getPatternPosition(typeNumber: number): number[];
-    /**
-     * Get the max length of the data.
-     * @param typeNumber The type number to get the max length for.
-     * @param mode The data mode to get data max length for.
-     * @param errorCorrectLevel The error correction to get the max length for.
-     * @returns The max length.
-     */
-    static getMaxLength(typeNumber: number, mode: QRDataMode, errorCorrectLevel: ErrorCorrectLevel): number;
-    /**
-     * Get the error correction polynomial for the error correcto length.
-     * @param errorCorrectLength The error correction length to get the polynomial for.
-     * @returns The polynomial for the error correction length.
-     */
-    static getErrorCorrectPolynomial(errorCorrectLength: number): Polynomial;
-    /**
-     * Get the mask method for the given pattern.
-     * @param maskPattern The pattern to get the mask for.
-     * @returns The mask method for the pattern.
-     */
-    static getMaskMethod(maskPattern: number): (i: number, j: number) => boolean;
-    /**
-     * Get the BCH type info.
-     * @param data The data to get the BCH type info for.
-     * @returns The type info.
-     */
-    static getBCHTypeInfo(data: number): number;
-    /**
-     * Get the BCH type number.
-     * @param data The data to get the BCH type number for.
-     * @returns The type number.
-     */
-    static getBCHTypeNumber(data: number): number;
-}
-
-/**
- * Class to represent a RS Block.
- * Based on https://github.com/kazuhikoarase/qrcode-generator/
- */
-export class RSBlock {
-    private readonly _totalCount;
-    private readonly _dataCount;
-    /**
-     * Create a new insstance of RSBlock.
-     * @param totalCount The total count for the block.
-     * @param dataCount The data count for the block.
-     */
-    constructor(totalCount: number, dataCount: number);
-    /**
-     * Get RS Blocks for the type number and error correct level.
-     * @param typeNumber The type number.
-     * @param errorCorrectLevel The error correct level.
-     * @returns The RS Blocks.
-     */
-    static getRSBlocks(typeNumber: number, errorCorrectLevel: ErrorCorrectLevel): RSBlock[];
-    /**
-     * Get the data count.
-     * @returns The data count.
-     */
-    getDataCount(): number;
-    /**
-     * Get the total count.
-     * @returns The total count.
-     */
-    getTotalCount(): number;
 }
 
 /**
@@ -452,103 +304,6 @@ export enum ErrorCorrectLevel {
      * 30%
      */
     H = 2
-}
-
-/**
- * Mask patterns for QR codes.
- * Based on https://github.com/kazuhikoarase/qrcode-generator/
- */
-export enum MaskPattern {
-    /**
-     * mask pattern 000
-     */
-    PATTERN000 = 0,
-    /**
-     * mask pattern 001
-     */
-    PATTERN001 = 1,
-    /**
-     * mask pattern 010
-     */
-    PATTERN010 = 2,
-    /**
-     * mask pattern 011
-     */
-    PATTERN011 = 3,
-    /**
-     * mask pattern 100
-     */
-    PATTERN100 = 4,
-    /**
-     * mask pattern 101
-     */
-    PATTERN101 = 5,
-    /**
-     * mask pattern 110
-     */
-    PATTERN110 = 6,
-    /**
-     * mask pattern 111
-     */
-    PATTERN111 = 7
-}
-
-/**
- * Base class for storing QR Data.
- * Based on https://github.com/kazuhikoarase/qrcode-generator/
- */
-export abstract class QRDataBase {
-    /**
-     * Create a new instance of QRDataBase.
-     * @param mode The mode for the data.
-     * @param data The data.
-     */
-    constructor(mode: QRDataMode, data: string);
-    /**
-     * Get the data mode.
-     * @returns The data mode.
-     */
-    getMode(): QRDataMode;
-    /**
-     * Get the data.
-     * @returns The data.
-     */
-    getData(): string;
-    /**
-     * Get the length of the data.
-     * @returns The length of the data.
-     */
-    abstract getLength(): number;
-    /**
-     * Write data into the buffer.
-     * @param buffer The buffer to write into.
-     */
-    abstract write(buffer: BitBuffer): void;
-    /**
-     * Get the length in bits of the data.
-     * @param typeNumber The type number to get the length for.
-     * @returns The length in bits.
-     */
-    getLengthInBits(typeNumber: number): number;
-}
-
-/**
- * The mode for the qr data.
- * Based on https://github.com/kazuhikoarase/qrcode-generator/
- */
-export enum QRDataMode {
-    /**
-     * number
-     */
-    number = 1,
-    /**
-     * alphabet and number
-     */
-    alphaNumeric = 2,
-    /**
-     * 8bit byte
-     */
-    byte8 = 4
 }
 
 export function initRender(): void;
@@ -598,6 +353,21 @@ export class JpegEncoder {
 }
 
 /**
+ * PNG Encoder.
+ * Based on https://github.com/photopea/UPNG.js
+ */
+export class PngEncoder {
+    /**
+     * Encode the image frames to png.
+     * @param bufs The frame buffers to encode.
+     * @param w The image width.
+     * @param h The image height.
+     * @returns The data for the image.
+     */
+    encode(bufs: ArrayBuffer[], w: number, h: number): Uint8Array;
+}
+
+/**
  * Interface which defines a QR Code Renderer.
  * @interface
  */
@@ -617,7 +387,7 @@ export interface IQRRenderer {
      * @param marginSize The margin size in pixels to leave around the qr code.
      * @returns The object rendered as an html element.
      */
-    renderHtml(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<HTMLElement>;
+    renderHtml(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<Element>;
 }
 
 /**
@@ -660,9 +430,9 @@ export class JpegRendererOptions {
      */
     background?: Color;
     /**
-     * The style to apply for the html element.
+     * The css class to apply for the html element.
      */
-    elementStyle?: string;
+    cssClass?: string;
 }
 
 /**
@@ -705,9 +475,9 @@ export class CanvasRendererOptions {
      */
     background?: Color;
     /**
-     * The style to apply for the html element.
+     * The css class to apply for the html element.
      */
-    elementStyle?: string;
+    cssClass?: string;
 }
 
 /**
@@ -750,9 +520,9 @@ export class PngRendererOptions {
      */
     background?: Color;
     /**
-     * The style to apply for the html element.
+     * The css class to apply for the html element.
      */
-    elementStyle?: string;
+    cssClass?: string;
 }
 
 /**
@@ -779,7 +549,7 @@ export class SvgRenderer implements IQRRenderer {
      * @param marginSize The margin size in pixels to leave around the qr code.
      * @returns The object rendered as an html element.
      */
-    renderHtml(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<HTMLElement>;
+    renderHtml(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<SVGSVGElement>;
 }
 
 /**
@@ -795,9 +565,9 @@ export class SvgRendererOptions {
      */
     background?: Color;
     /**
-     * The style to apply for the html element.
+     * The css class to apply for the html element.
      */
-    elementStyle?: string;
+    cssClass?: string;
 }
 
 /**
@@ -824,7 +594,7 @@ export class TextRenderer implements IQRRenderer {
      * @param marginSize The margin size in pixels to leave around the qr code.
      * @returns The object rendered as an html element.
      */
-    renderHtml(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<HTMLElement>;
+    renderHtml(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<Element>;
 }
 
 /**
@@ -840,9 +610,9 @@ export class TextRendererOptions {
      */
     offChar?: string;
     /**
-     * The style to apply for the html element.
+     * The css class to apply for the html element.
      */
-    elementStyle?: string;
+    cssClass?: string;
 }
 
 /**
@@ -867,7 +637,7 @@ export class Trinity {
      * @param rendererOptions Any options you want to pass to the renderer.
      * @returns The render of the QR code in the requested format.
      */
-    static paymentQR(paymentData: ITrinityPayment, rendererType: string, cellSize?: number, marginSize?: number, rendererOptions?: any): Promise<any>;
+    static paymentQR(paymentData: ITrinityPayment, rendererType: string, cellSize?: number, marginSize?: number, rendererOptions?: any): Promise<string | Uint8Array>;
     /**
      * Convert address data into a QR code.
      * @param address The address to convert.
@@ -877,7 +647,7 @@ export class Trinity {
      * @param rendererOptions Any options you want to pass to the renderer.
      * @returns The render of the QR code in the requested format.
      */
-    static addressQR(address: string, rendererType: string, cellSize?: number, marginSize?: number, rendererOptions?: any): Promise<any>;
+    static addressQR(address: string, rendererType: string, cellSize?: number, marginSize?: number, rendererOptions?: any): Promise<string | Uint8Array>;
 }
 
 /**
