@@ -8,7 +8,7 @@ This is a combined library of all the media type libraries.
 The library is a bundle of all the following components:
 
 * [@tangle-frost/iota-core](https://github.com/tangle-frost/iota-core) - Core functions and helper classes.
-* [@tangle-frost/iota-qr-core](https://github.com/tangle-frost/iota-qr-core) - Core functions generating QR codes.
+* [@tangle-frost/iota-qr-core](https://github.com/tangle-frost/iota-qr-core) - Core functions for generating QR codes.
 * [@tangle-frost/iota-qr-render](https://github.com/tangle-frost/iota-qr-render) - QR Code Renderers.
 * [@tangle-frost/iota-qr-data](https://github.com/tangle-frost/iota-qr-data) - Generate QR Codes for specific data types.
 
