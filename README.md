@@ -21,7 +21,7 @@ npm install @tangle-frost/iota-qr-lib --save
 
 # TypeScript Definitions
 
-TypeScript definitions can be found in the [pkg/iota-qr-lib.d.ts](./pkg/iota-qr-lib.d.ts) and should be located automatically by your developments tools.
+TypeScript definitions can be found in the [pkg/iota-qr-lib.d.ts](https://github.com/tangle-frost/iota-qr-lib/blob/master/pkg/iota-qr-lib.d.ts) and should be located automatically by your developments tools.
 
 # Usage
 
@@ -62,4 +62,4 @@ QWJXX99QDEYWUWXEGA9QXSNOWOKHMFKCMSZTXDFLRZAFQRPQTHQDXSZWQQTAHNDNRYHMIKJYWQLKTFHB
 
 # License
 
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/tangle-frost/iota-qr-lib/blob/master/LICENSE) file for details.
