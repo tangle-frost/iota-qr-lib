@@ -36,7 +36,6 @@
         "pkg-dts": "node ./dist/build-dts.js",
         "pkg-finalise": "rimraf ./pkg/bootstrap.js",
         "pkg": "npm-run-all pkg-clean pkg-dev-all pkg-prod-all pkg-dts pkg-finalise",
-        "security": "nsp check",
         "dist": "npm-run-all build pkg"
     },
     "dependencies": {
@@ -55,7 +54,6 @@
         "babel-plugin-transform-builtin-extend": "^1.1.2",
         "cross-env": "^5.2.0",
         "npm-run-all": "^4.1.3",
-        "nsp": "^3.2.1",
         "rimraf": "^2.6.2",
         "typescript": "^2.9.2",
         "uglifyjs-webpack-plugin": "^1.2.5",
