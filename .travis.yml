@@ -26,6 +26,3 @@ install:
   - npm install
 script:
   - npm run dist || travis_terminate 1
-cache:
-  directories:
-    - "node_modules"
