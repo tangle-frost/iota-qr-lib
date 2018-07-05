@@ -38,8 +38,6 @@
         "pkg": "npm-run-all pkg-clean pkg-dev-all pkg-prod-all pkg-dts pkg-finalise",
         "dist": "npm-run-all build pkg"
     },
-    "dependencies": {
-    },
     "devDependencies": {
         "@babel/core": "^7.0.0-beta.40",
         "@babel/plugin-transform-runtime": "^7.0.0-beta.40",
@@ -47,8 +45,8 @@
         "@babel/runtime": "^7.0.0-beta.40",
         "@tangle-frost/iota-core": "^0.0.1",
         "@tangle-frost/iota-qr-core": "^0.0.1",
-        "@tangle-frost/iota-qr-render": "^0.0.1",
         "@tangle-frost/iota-qr-data": "^0.0.1",
+        "@tangle-frost/iota-qr-render": "^0.0.1",
         "@types/node": "^10.3.4",
         "babel-loader": "^8.0.0-beta.0",
         "babel-plugin-transform-builtin-extend": "^1.1.2",
@@ -57,7 +55,7 @@
         "rimraf": "^2.6.2",
         "typescript": "^2.9.2",
         "uglifyjs-webpack-plugin": "^1.2.5",
-        "webpack": "^4.8.3",
+        "webpack": "^4.15.0",
         "webpack-cli": "^3.0.8"
     }
 }
