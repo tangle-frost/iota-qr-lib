@@ -4,6 +4,8 @@
 
 This is a combined library of all the IOTA QR Type modules.
 
+It can be used with a \<script\> include, or as a UMD with Webpack/Browserify/Parcel/SystemJs/RequireJS etc
+
 The library is a bundle of all the following components:
 
 * [@tangle-frost/iota-core](https://github.com/tangle-frost/iota-core) - Core functions and helper classes.
