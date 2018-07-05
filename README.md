@@ -1,8 +1,8 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/tangle-frost/iota-qr-lib/master/LICENSE) [![Build Status](https://travis-ci.org/tangle-frost/iota-qr-lib.svg?branch=master)](https://travis-ci.org/tangle-frost/iota-qr-lib) 
 
-# Tangle Frost - IOTA Media Type Lib
+# Tangle Frost - IOTA QR Code Library
 
-This is a combined library of all the media type libraries.
+This is a combined library of all the IOTA QR Type modules.
 
 The library is a bundle of all the following components:
 
