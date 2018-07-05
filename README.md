@@ -53,6 +53,9 @@ Come and find us on the IOTA [Discord](https://discordapp.com/invite/fNGZXvh) de
 # Donations
 
 IOTA donations are always welcome :smile:
+
+![QR Code for Trinity](./donation.png)
+
 ```shell
 QWJXX99QDEYWUWXEGA9QXSNOWOKHMFKCMSZTXDFLRZAFQRPQTHQDXSZWQQTAHNDNRYHMIKJYWQLKTFHBWSAOJDHAMB
 ```
