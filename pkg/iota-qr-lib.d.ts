@@ -197,10 +197,16 @@ export class StringHelper {
     static isEmpty(value: any): boolean;
     /**
      * Is the string all ASCII characters.
-     * @param value string to test if is is ASCII.
+     * @param value string to test if it is ASCII.
      * @returns True if the object is all ASCII.
      */
     static isASCII(value: string): boolean;
+    /**
+     * Is the string all printable characters, including tab, carriage return and line feed.
+     * @param value string to test if it is printabl.
+     * @returns True if the object is all printable
+     */
+    static isPrintable(value: string): boolean;
     /**
      * Encode non ASCII characters with control characters.
      * @param value The string value to escape.
