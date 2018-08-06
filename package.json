@@ -47,7 +47,7 @@
         "@tangle-frost/iota-qr-core": "^0.0.5",
         "@tangle-frost/iota-qr-data": "^0.0.5",
         "@tangle-frost/iota-qr-render": "^0.0.5",
-        "@types/node": "^10.5.2",
+        "@types/node": "^10.5.6",
         "babel-loader": "^8.0.0-beta.0",
         "babel-plugin-transform-builtin-extend": "^1.1.2",
         "cross-env": "^5.2.0",
