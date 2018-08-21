@@ -6,7 +6,7 @@ const pkgFolder = path.join(__dirname, './pkg');
 const bootstrapFile = path.join(pkgFolder, 'bootstrap.js');
 
 const isProd = process.env.NODE_ENV === 'production';
-const outputLibName = process.env.LIB_VER === 'all' ? "" : `-${process.env.LIB_VER}`; 
+const outputLibName = process.env.LIB_VER === 'all' ? "" : `-${process.env.LIB_VER}`;
 
 let isDir = false;
 try {
@@ -57,7 +57,19 @@ module.exports = {
                     loader: "babel-loader",
                     options: {
                         "presets": [
-                            "@babel/preset-env"
+                            [
+                                "@babel/preset-env", {
+                                    "targets": {
+                                        "browsers": [
+                                            "Chrome >= 52",
+                                            "FireFox >= 44",
+                                            "Safari >= 7",
+                                            "Explorer 11",
+                                            "last 4 Edge versions"
+                                        ]
+                                    } 
+                                }
+                            ]
                         ],
                         "plugins": [
                             [

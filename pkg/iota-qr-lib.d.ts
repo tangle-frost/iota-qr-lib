@@ -242,7 +242,7 @@ export class TrytesHelper {
      */
     static from(trytes: string): string;
     /**
-     * Check to make sure all the characters in the strin are tryte characters.
+     * Check to make sure all the characters in the string are tryte characters.
      * @param trytes To check for validity.
      * @returns true if the trytes are valid.
      */
@@ -556,6 +556,27 @@ export class SvgRenderer implements IQRRenderer {
      * @returns The object rendered as an html element.
      */
     renderHtml(cellData: QRCellData, cellSize?: number, marginSize?: number): Promise<SVGSVGElement>;
+    /**
+     * Render the internal content of the svg.
+     * @param cellData The cell data to render.
+     * @param cellSize The size of the cell.
+     * @param marginSize The size of the margin.
+     * @returns The dimension and content of the svg.
+     */
+    renderContent(cellData: boolean[][], cellSize: number, marginSize: number): {
+        width: number;
+        height: number;
+        content: string;
+    };
+    /**
+     * Wrap svg content with outer xml.
+     * @param width The width of the svg.
+     * @param height The height of the svg.
+     * @param content The inner content of the svg.
+     * @param includeXmlDeclaration Include an xml declaration at the start of the content
+     * @returns The SVG content.
+     */
+    renderWrapper(width: number, height: number, content: string, includeXmlDeclaration: boolean): string;
 }
 
 /**
