@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.0.7
+
+* SvgRenderer converted rects to path to reduce svg size
+* SvgRenderer.renderWrapper is now static
+
 ## v0.0.6
 
 * Widened range of targeted browser support

@@ -54,11 +54,7 @@ Come and find us on the IOTA [Discord](https://discordapp.com/invite/fNGZXvh) de
 
 IOTA donations are always welcome :smile:
 
-![QR Code for Trinity](https://raw.githubusercontent.com/tangle-frost/iota-qr-lib/master/donation.png)
-
-```shell
-QWJXX99QDEYWUWXEGA9QXSNOWOKHMFKCMSZTXDFLRZAFQRPQTHQDXSZWQQTAHNDNRYHMIKJYWQLKTFHBWSAOJDHAMB
-```
+![tangle-frost@tngl-me](https://cdn.tngl.me/tngl-me/tangle-frost/qr.svg)
 
 # License
 
