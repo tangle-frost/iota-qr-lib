@@ -69,6 +69,74 @@ export class Color {
 }
 
 /**
+ * Class to represent a linear gradient.
+ */
+export class LinearGradient {
+    /**
+     * Create a new instance of linear gradient.
+     * @param stops The stop for the gradient.
+     * @param angle The angle for the gradient.
+     */
+    constructor(stops: {
+        color: Color;
+        offsetPercent: number;
+    }[], angle?: number);
+    /**
+     * Get the stops.
+     * @returns The stops.
+     */
+    stops(): {
+        color: Color;
+        offsetPercent: number;
+    }[];
+    /**
+     * Get the angle.
+     * @returns The angle.
+     */
+    angle(): number;
+}
+
+/**
+ * Class to represent a radial gradient.
+ */
+export class RadialGradient {
+    /**
+     * Create a new instance of radial gradient.
+     * @param stops The stop for the gradient.
+     * @param offsetXPercent The offsetXPercent for the gradient.
+     * @param offsetYPercent The offsetYPercent for the gradient.
+     * @param radiusPercent The radiusPercent for the gradient.
+     */
+    constructor(stops: {
+        color: Color;
+        offsetPercent: number;
+    }[], offsetXPercent?: number, offsetYPercent?: number, radiusPercent?: number);
+    /**
+     * Get the stops.
+     * @returns The stops.
+     */
+    stops(): {
+        color: Color;
+        offsetPercent: number;
+    }[];
+    /**
+     * Get the offsetXPercent.
+     * @returns The offsetXPercent.
+     */
+    offsetXPercent(): number;
+    /**
+     * Get the offsetYPercent.
+     * @returns The offsetYPercent.
+     */
+    offsetYPercent(): number;
+    /**
+     * Get the radiusPercent.
+     * @returns The radiusPercent.
+     */
+    radiusPercent(): number;
+}
+
+/**
  * Factory to generate types.
  * @typeparam T The generic type for the object types in the factory.
  */
@@ -577,6 +645,9 @@ export class SvgRenderer implements IQRRenderer {
         height: number;
         content: string;
     };
+    private renderGradientStops;
+    private renderLinearGradient;
+    private renderRadialGradient;
 }
 
 /**
@@ -584,9 +655,21 @@ export class SvgRenderer implements IQRRenderer {
  */
 export class SvgRendererOptions {
     /**
+     * The foreground fill style.
+     */
+    foregroundType?: "solid" | "linear" | "radial";
+    /**
      * The foreground colour.
      */
     foreground?: Color;
+    /**
+     * The foreground linear gradient.
+     */
+    foregroundLinear?: LinearGradient;
+    /**
+     * The foreground radial gradient.
+     */
+    foregroundRadial?: RadialGradient;
     /**
      * The background colour.
      */
