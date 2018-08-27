@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.0.9
+
+* TypeScript compile target ES5, use individual modules better tree shaking
+
 ## v0.0.8
 
 * Added SvgRendererOptions foregroundType with options of "solid" | "linear" | "radial"
